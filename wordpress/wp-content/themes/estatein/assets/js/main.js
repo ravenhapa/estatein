@@ -1,6 +1,14 @@
 (function () {
   const menuToggle = document.querySelector(".menu-toggle");
   const navigation = document.querySelector("#primary-navigation");
+  const announcement = document.querySelector("[data-announcement]");
+  const announcementClose = document.querySelector("[data-announcement-close]");
+
+  if (announcement && announcementClose) {
+    announcementClose.addEventListener("click", function () {
+      announcement.classList.add("is-hidden");
+    });
+  }
 
   if (!menuToggle || !navigation) {
     return;

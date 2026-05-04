@@ -127,19 +127,35 @@ textarea:focus-visible {
 }
 
 .top-strip {
+  position: relative;
   border-bottom: 1px solid var(--color-line);
-  background: #19191c;
+  background:
+    linear-gradient(rgba(25, 25, 28, 0.74), rgba(25, 25, 28, 0.74)),
+    url("assets/images/abstract-design.png") center / cover no-repeat,
+    #19191c;
+}
+
+.top-strip.is-hidden {
+  display: none;
 }
 
 .top-strip__inner {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
   min-height: 48px;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
   color: var(--color-soft);
   text-align: center;
   font-size: 14px;
+}
+
+.top-strip__message {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .top-strip a {
@@ -148,28 +164,49 @@ textarea:focus-visible {
   text-underline-offset: 4px;
 }
 
+.top-strip__close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  justify-self: end;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.top-strip__close:hover {
+  border-color: rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .site-header {
   position: sticky;
   z-index: 30;
   top: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(18, 18, 20, 0.88);
+  background: #191919;
   backdrop-filter: blur(14px);
 }
 
 .site-header__inner {
   display: grid;
-  min-height: 80px;
+  min-height: 88px;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 24px;
+  gap: 38px;
 }
 
 .site-brand {
   display: inline-flex;
   align-items: center;
-  width: 151px;
-  height: 47px;
+  width: 170px;
+  min-width: 170px;
+  height: 54px;
+  overflow: visible;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -177,7 +214,9 @@ textarea:focus-visible {
 .site-brand__logo,
 .site-brand .custom-logo {
   width: 151px;
-  height: 47px;
+  height: auto;
+  max-width: 151px;
+  max-height: 47px;
   object-fit: contain;
 }
 
@@ -205,7 +244,7 @@ textarea:focus-visible {
 .primary-nav ul {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 30px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -213,21 +252,27 @@ textarea:focus-visible {
 
 .primary-nav a {
   display: inline-flex;
-  min-height: 44px;
+  min-width: 96px;
+  min-height: 58px;
   align-items: center;
+  justify-content: center;
   border: 1px solid transparent;
-  border-radius: var(--radius);
-  padding: 0 18px;
-  color: var(--color-muted);
-  font-size: 14px;
+  border-radius: 9px;
+  padding: 0 24px;
+  color: #ffffff;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 600;
   transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease;
 }
 
 .primary-nav a:hover,
 .primary-nav .current-menu-item > a,
-.primary-nav .current_page_item > a {
+.primary-nav .current_page_item > a,
+.primary-nav .current-menu-ancestor > a,
+.primary-nav .current-menu-parent > a {
   border-color: var(--color-line);
-  background: #1d1d21;
+  background: #141414;
   color: #ffffff;
 }
 
@@ -236,6 +281,16 @@ textarea:focus-visible {
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.header-actions .button {
+  min-width: 132px;
+  min-height: 60px;
+  border-radius: 9px;
+  background: #141414;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .menu-toggle {
@@ -1300,6 +1355,8 @@ button.button:hover {
   }
 
   .primary-nav a {
+    width: 100%;
+    min-width: 0;
     justify-content: center;
   }
 
@@ -1344,6 +1401,25 @@ button.button:hover {
 @media (max-width: 640px) {
   .container {
     width: min(100% - 24px, var(--container));
+  }
+
+  .top-strip__inner {
+    grid-template-columns: minmax(0, 1fr) 38px;
+    gap: 10px;
+    padding-block: 8px;
+  }
+
+  .top-strip__message {
+    grid-column: 1;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .top-strip__close {
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
   }
 
   .section {

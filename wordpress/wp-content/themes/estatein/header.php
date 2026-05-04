@@ -16,10 +16,15 @@
 <?php wp_body_open(); ?>
 <div class="site-shell">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'estatein' ); ?></a>
-	<div class="top-strip">
-		<div class="container top-strip__inner">
-			<span><?php esc_html_e( 'Discover Your Dream Property with Estatein.', 'estatein' ); ?></span>
-			<a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Learn more', 'estatein' ); ?></a>
+	<div class="top-strip" data-announcement>
+		<div class="container top-strip__inner">`
+			<div class="top-strip__message">
+				<span><?php esc_html_e( '✨Discover Your Dream Property with Estatein.', 'estatein' ); ?></span>
+				<a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Learn more', 'estatein' ); ?></a>
+			</div>
+			<button class="top-strip__close" type="button" data-announcement-close aria-label="<?php esc_attr_e( 'Close announcement', 'estatein' ); ?>">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
 	</div>
 
@@ -29,7 +34,7 @@
 				<?php if ( has_custom_logo() ) : ?>
 					<?php the_custom_logo(); ?>
 				<?php else : ?>
-					<img class="site-brand__logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Estatein', 'estatein' ); ?>" width="151" height="47">
+					<img class="site-brand__logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php esc_attr_e( 'Estatein', 'estatein' ); ?>" width="151" height="47">
 				<?php endif; ?>
 			</a>
 

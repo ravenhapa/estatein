@@ -19,7 +19,7 @@
 		<div class="footer-main container">
 			<div class="footer-newsletter">
 				<a class="site-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img class="site-brand__logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.svg' ); ?>" alt="<?php esc_attr_e( 'Estatein', 'estatein' ); ?>" width="151" height="47" loading="lazy" decoding="async">
+					<img class="site-brand__logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" alt="<?php esc_attr_e( 'Estatein', 'estatein' ); ?>" width="151" height="47" loading="lazy" decoding="async">
 				</a>
 				<p><?php esc_html_e( 'Our team will contact you ASAP with market insight, property matches, and practical next steps.', 'estatein' ); ?></p>
 				<form class="newsletter-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">

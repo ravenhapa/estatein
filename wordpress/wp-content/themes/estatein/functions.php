@@ -80,6 +80,41 @@ function estatein_register_sidebars() {
 add_action( 'widgets_init', 'estatein_register_sidebars' );
 
 /**
+ * Outputs the Estatein favicon when no WordPress site icon is configured.
+ */
+function estatein_favicon() {
+	if ( has_site_icon() ) {
+		return;
+	}
+
+	$favicon_url = get_template_directory_uri() . '/assets/images/favicon.ico';
+	?>
+	<link rel="icon" href="<?php echo esc_url( $favicon_url ); ?>" sizes="any">
+	<link rel="shortcut icon" href="<?php echo esc_url( $favicon_url ); ?>" type="image/x-icon">
+	<?php
+}
+add_action( 'wp_head', 'estatein_favicon', 1 );
+add_action( 'admin_head', 'estatein_favicon', 1 );
+
+/**
+ * Customizes document titles for the Estatein brand.
+ *
+ * @param array $parts Title parts.
+ * @return array
+ */
+function estatein_document_title_parts( $parts ) {
+	if ( is_front_page() || is_home() ) {
+		$parts['title'] = __( 'Estatein - Discover Your Dream Property', 'estatein' );
+		unset( $parts['site'], $parts['tagline'] );
+		return $parts;
+	}
+
+	$parts['site'] = __( 'Estatein', 'estatein' );
+	return $parts;
+}
+add_filter( 'document_title_parts', 'estatein_document_title_parts' );
+
+/**
  * Outputs lightweight SEO and social meta tags.
  */
 function estatein_meta_tags() {
@@ -115,12 +150,13 @@ add_action( 'wp_head', 'estatein_meta_tags', 2 );
  * Fallback primary menu used before a menu is assigned.
  */
 function estatein_primary_menu_fallback() {
+	$current_path = trim( wp_parse_url( home_url( add_query_arg( null, null ) ), PHP_URL_PATH ), '/' );
 	?>
 	<ul id="primary-menu">
-		<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'estatein' ); ?></a></li>
-		<li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'estatein' ); ?></a></li>
-		<li><a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Properties', 'estatein' ); ?></a></li>
-		<li><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'Services', 'estatein' ); ?></a></li>
+		<li class="<?php echo ( '' === $current_path ) ? 'current-menu-item' : ''; ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'estatein' ); ?></a></li>
+		<li class="<?php echo ( 'about' === $current_path ) ? 'current-menu-item' : ''; ?>"><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'estatein' ); ?></a></li>
+		<li class="<?php echo ( 'properties' === $current_path ) ? 'current-menu-item' : ''; ?>"><a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Properties', 'estatein' ); ?></a></li>
+		<li class="<?php echo ( 'services' === $current_path ) ? 'current-menu-item' : ''; ?>"><a href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'Services', 'estatein' ); ?></a></li>
 	</ul>
 	<?php
 }

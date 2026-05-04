@@ -64,7 +64,7 @@ $faqs_query = new WP_Query( array(
 		<div class="hero__content">
 			<div>
 				<span class="section-kicker"><?php esc_html_e( 'Estatein Real Estate Agency', 'estatein' ); ?></span>
-				<h1><?php esc_html_e( 'Discover Your Dream Property with Estatein', 'estatein' ); ?></h1>
+				<h1><?php esc_html_e( '✨Discover Your Dream Property with Estatein', 'estatein' ); ?></h1>
 			</div>
 			<p><?php esc_html_e( 'Your journey to finding the perfect property begins here. Explore listings, expert guidance, and services built around your next move.', 'estatein' ); ?></p>
 			<div class="hero__actions">

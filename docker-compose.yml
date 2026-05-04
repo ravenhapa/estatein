@@ -1,0 +1,40 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: estatein
+      MYSQL_USER: estatein
+      MYSQL_PASSWORD: estatein
+      MYSQL_ROOT_PASSWORD: estatein-root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uestatein", "-pestatein"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: estatein
+      WORDPRESS_DB_PASSWORD: estatein
+      WORDPRESS_DB_NAME: estatein
+      WORDPRESS_DEBUG: "1"
+    volumes:
+      - wp_data:/var/www/html
+      - ./estatein:/var/www/html/wp-content/themes/estatein
+
+volumes:
+  db_data:
+  wp_data:

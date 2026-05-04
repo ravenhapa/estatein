@@ -1,0 +1,98 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        {
+          "slug": "ink",
+          "color": "#f7f7f8",
+          "name": "Ink"
+        },
+        {
+          "slug": "muted",
+          "color": "#b6b6bd",
+          "name": "Muted"
+        },
+        {
+          "slug": "page",
+          "color": "#111113",
+          "name": "Page"
+        },
+        {
+          "slug": "panel",
+          "color": "#17171a",
+          "name": "Panel"
+        },
+        {
+          "slug": "accent",
+          "color": "#703bf7",
+          "name": "Accent"
+        },
+        {
+          "slug": "gold",
+          "color": "#d2b56d",
+          "name": "Gold"
+        },
+        {
+          "slug": "green",
+          "color": "#9fcf7b",
+          "name": "Green"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "860px",
+      "wideSize": "1320px"
+    },
+    "spacing": {
+      "spacingScale": {
+        "steps": 0
+      },
+      "spacingSizes": [
+        {
+          "slug": "20",
+          "size": "20px",
+          "name": "20"
+        },
+        {
+          "slug": "40",
+          "size": "40px",
+          "name": "40"
+        },
+        {
+          "slug": "80",
+          "size": "80px",
+          "name": "80"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "base",
+          "fontFamily": "\"Urbanist\", \"Inter\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+          "name": "Estatein Base"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#111113",
+      "text": "#f7f7f8"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--base)",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "#a685fa"
+        }
+      }
+    }
+  }
+}

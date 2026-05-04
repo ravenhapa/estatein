@@ -8,6 +8,8 @@ The theme is intentionally lightweight. It does not depend on a page builder, la
 
 ## Theme Structure
 
+All custom theme files live under `wordpress/wp-content/themes/estatein/`, matching the conventional WordPress theme location.
+
 - `header.php`, `footer.php`, and `sidebar.php` provide reusable layout components.
 - `front-page.php`, `page-about.php`, `page-services.php`, and `page-contact.php` cover the primary Figma/reference pages.
 - `archive-property.php` and `single-property.php` power listing discovery and detail views.

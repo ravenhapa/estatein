@@ -168,9 +168,17 @@ textarea:focus-visible {
 .site-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  width: 151px;
+  height: 47px;
   font-weight: 700;
   letter-spacing: 0;
+}
+
+.site-brand__logo,
+.site-brand .custom-logo {
+  width: 151px;
+  height: 47px;
+  object-fit: contain;
 }
 
 .site-brand__mark {

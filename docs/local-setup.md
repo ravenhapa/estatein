@@ -2,7 +2,7 @@
 
 ## Option 1: Existing WordPress Install
 
-1. Copy the `estatein` folder into `wp-content/themes/`.
+1. The theme lives at `wordpress/wp-content/themes/estatein/`. For another WordPress install, copy that `estatein` folder into the target site's `wp-content/themes/`.
 2. In WordPress Admin, go to Appearance > Themes and activate Estatein.
 3. Go to Settings > Permalinks and click Save Changes.
 4. Create pages with these slugs:
@@ -28,7 +28,7 @@ Then open:
 http://localhost:8080
 ```
 
-The Docker setup includes a MySQL `db` service and a `wordpress` service. WordPress connects to MySQL through `WORDPRESS_DB_HOST=db:3306`, and the database is stored in the `db_data` Docker volume. The WordPress files/uploads are stored in the `wp_data` volume, while the local `estatein` theme folder is mounted into `wp-content/themes/estatein`.
+The Docker setup includes a MySQL `db` service and a `wordpress` service. WordPress connects to MySQL through `WORDPRESS_DB_HOST=db:3306`, and the database is stored in the `db_data` Docker volume. The WordPress files/uploads are stored in the `wp_data` volume, while the local `wordpress/wp-content/themes/estatein` theme folder is mounted into `wp-content/themes/estatein`.
 
 If Docker Desktop is installed but the `docker` command is not in your terminal PATH, use:
 

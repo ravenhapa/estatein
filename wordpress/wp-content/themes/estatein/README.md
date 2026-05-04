@@ -4,7 +4,7 @@ Estatein is a custom dark real estate WordPress theme built from scratch for pro
 
 ## Installation
 
-1. Move the `estatein` folder into `wp-content/themes/`.
+1. Move or keep the `estatein` folder in `wp-content/themes/`. In this repository, the theme already lives at `wordpress/wp-content/themes/estatein/`.
 2. In WordPress Admin, go to Appearance > Themes and activate Estatein.
 3. Go to Settings > Permalinks and save once if the `/properties/` archive does not load immediately.
 4. Create pages for Home, About, Services, and Contact. Use the slugs `home`, `about`, `services`, and `contact`.

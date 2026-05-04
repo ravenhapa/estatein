@@ -4,7 +4,7 @@
 
 Estatein is a custom WordPress theme project based on a dark real estate Figma design. The primary goal is to convert the reference design into a complete, responsive WordPress website with strong fidelity to the provided layouts, typography, color system, spacing, content hierarchy, and interaction patterns.
 
-The theme source lives in `estatein/`. Project documentation lives in `docs/`. A Docker-based local WordPress setup is available through `docker-compose.yml`.
+The theme source lives in `wordpress/wp-content/themes/estatein/`. Project documentation lives in `docs/`. A Docker-based local WordPress setup is available through `docker-compose.yml`.
 
 ## Primary Objectives
 
@@ -116,7 +116,7 @@ Keep handoff documentation current:
 
 - `docs/development-process.md` should explain development choices, theme structure, content management, plugin strategy, UX/accessibility, SEO/performance, and testing notes.
 - `docs/local-setup.md` should explain how to run the project locally and prepare demo content.
-- `estatein/README.md` should remain a practical theme installation and setup guide.
+- `wordpress/wp-content/themes/estatein/README.md` should remain a practical theme installation and setup guide.
 
 ## Coding Conventions
 

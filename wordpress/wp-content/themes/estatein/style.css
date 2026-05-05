@@ -1912,7 +1912,7 @@ button.button:hover {
   border-color: var(--color-accent-2);
 }
 
-.single-property {
+.lead-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
   gap: 34px;
@@ -2872,7 +2872,7 @@ button.button:hover {
 
   .hero__grid,
   .feature-band,
-  .single-property {
+  .lead-layout {
     grid-template-columns: 1fr;
   }
 

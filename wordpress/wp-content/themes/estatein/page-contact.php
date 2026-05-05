@@ -37,7 +37,7 @@ get_header();
 </section>
 
 <section class="section section--border">
-	<div class="container single-property">
+	<div class="container lead-layout">
 		<div>
 			<div class="section-heading">
 				<div>

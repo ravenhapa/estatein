@@ -58,6 +58,12 @@ add_action( 'after_setup_theme', 'estatein_setup' );
  * Enqueues theme assets.
  */
 function estatein_enqueue_assets() {
+	wp_enqueue_style(
+		'estatein-fonts',
+		'https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap',
+		array(),
+		null
+	);
 	wp_enqueue_style( 'estatein-style', get_stylesheet_uri(), array(), ESTATEIN_VERSION );
 	wp_enqueue_script( 'estatein-main', get_template_directory_uri() . '/assets/js/main.js', array(), ESTATEIN_VERSION, true );
 }
@@ -171,12 +177,13 @@ function estatein_primary_menu_fallback() {
  * @return string
  */
 function estatein_image_url( $key ) {
+	$theme_images = trailingslashit( get_template_directory_uri() ) . 'assets/images/';
 	$images = array(
-		'hero'      => 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=82',
-		'feature'   => 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=82',
-		'property1' => 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=82',
-		'property2' => 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=900&q=82',
-		'property3' => 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=82',
+		'hero'      => $theme_images . 'front-page-image.png',
+		'feature'   => $theme_images . 'feature-image-1.png',
+		'property1' => $theme_images . 'feature-image-1.png',
+		'property2' => $theme_images . 'feature-image-2.png',
+		'property3' => $theme_images . 'feature-image-3.png',
 	);
 
 	return isset( $images[ $key ] ) ? $images[ $key ] : $images['hero'];
@@ -225,7 +232,7 @@ function estatein_demo_properties() {
 	return array(
 		array(
 			'title'   => __( 'Seaside Serenity Villa', 'estatein' ),
-			'excerpt' => __( 'A stunning coastal residence with open living areas, sunset views, and refined finishes.', 'estatein' ),
+			'excerpt' => __( 'A stunning 4-bedroom, 3-bathroom villa in a peaceful suburban neighborhood', 'estatein' ),
 			'price'   => '$1,250,000',
 			'address' => 'Malibu, California',
 			'beds'    => '4',
@@ -237,7 +244,7 @@ function estatein_demo_properties() {
 		),
 		array(
 			'title'   => __( 'Metropolitan Haven', 'estatein' ),
-			'excerpt' => __( 'A polished city home near culture, dining, and everyday convenience.', 'estatein' ),
+			'excerpt' => __( 'A chic and fully-furnished 2-bedroom apartment with panoramic city views', 'estatein' ),
 			'price'   => '$850,000',
 			'address' => 'New York, New York',
 			'beds'    => '2',
@@ -249,7 +256,7 @@ function estatein_demo_properties() {
 		),
 		array(
 			'title'   => __( 'Rustic Retreat Cottage', 'estatein' ),
-			'excerpt' => __( 'A warm private escape surrounded by nature with generous indoor and outdoor space.', 'estatein' ),
+			'excerpt' => __( 'An elegant 3-bedroom, 2.5-bathroom townhouse in a gated community', 'estatein' ),
 			'price'   => '$540,000',
 			'address' => 'Aspen, Colorado',
 			'beds'    => '3',
@@ -260,6 +267,214 @@ function estatein_demo_properties() {
 			'label'   => __( 'New Listing', 'estatein' ),
 		),
 	);
+}
+
+/**
+ * Default property content used for test and fallback rendering.
+ *
+ * @return array
+ */
+function estatein_property_defaults() {
+	return array(
+		'price'               => '$1,250,000',
+		'address'             => 'Malibu, California',
+		'beds'                => '04',
+		'baths'               => '03',
+		'area'                => '2,500 Square Feet',
+		'label'               => __( 'Villa', 'estatein' ),
+		'property_type'       => __( 'Villa', 'estatein' ),
+		'property_status'     => __( 'For Sale', 'estatein' ),
+		'year_built'          => '2023',
+		'inquiry_intro'       => __( 'Interested in this property? Fill out the form below, and our real estate specialists will get back to you with more details, scheduling options, and tailored recommendations.', 'estatein' ),
+		'pricing_details'     => __( 'At Estatein, transparency is key. Explore the estimated purchase and ownership costs below so your planning feels straightforward from day one.', 'estatein' ),
+		'pricing_note'        => __( 'The figures below are estimated to help you understand the purchase and monthly costs associated with this property. Adjust the content later if you need market-specific numbers.', 'estatein' ),
+		'gallery_images'      => array(
+			estatein_image_url( 'property1' ),
+			estatein_image_url( 'property2' ),
+			estatein_image_url( 'property3' ),
+			estatein_image_url( 'property1' ),
+			estatein_image_url( 'property2' ),
+			estatein_image_url( 'property3' ),
+		),
+		'amenities'           => array(
+			__( 'Expansive oceanfront terrace for outdoor entertaining', 'estatein' ),
+			__( 'Gourmet kitchen with top-of-the-line appliances', 'estatein' ),
+			__( 'Private infinity pool and spa with landscaped deck', 'estatein' ),
+			__( 'Primary suite with spa-inspired bathroom and walk-in closet', 'estatein' ),
+			__( 'Smart home system for lighting, climate, and security', 'estatein' ),
+		),
+		'additional_fees'     => array(
+			array(
+				'label' => __( 'Property Transfer Tax', 'estatein' ),
+				'value' => '$25,000',
+				'note'  => __( 'Estimated based on the final purchase price.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Legal Fees', 'estatein' ),
+				'value' => '$3,000',
+				'note'  => __( 'Approximate rate for purchase contract review and closing support.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Home Inspection', 'estatein' ),
+				'value' => '$500',
+				'note'  => __( 'Recommended before finalizing the purchase.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Property Insurance', 'estatein' ),
+				'value' => '$1,200',
+				'note'  => __( 'An annual premium estimate based on comparable coverage.', 'estatein' ),
+			),
+		),
+		'monthly_costs'       => array(
+			array(
+				'label' => __( 'Property Taxes', 'estatein' ),
+				'value' => '$1,250',
+				'note'  => __( 'Approximate monthly portion of local property taxes.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Homeowners Association Fee', 'estatein' ),
+				'value' => '$300',
+				'note'  => __( 'Monthly dues for shared amenities and community upkeep.', 'estatein' ),
+			),
+		),
+		'total_initial_costs' => array(
+			array(
+				'label' => __( 'Listing Price', 'estatein' ),
+				'value' => '$1,250,000',
+				'note'  => __( 'Primary purchase amount.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Additional Fees', 'estatein' ),
+				'value' => '$29,700',
+				'note'  => __( 'Transfer tax, legal fees, inspection, and insurance.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Down Payment', 'estatein' ),
+				'value' => '$250,000',
+				'note'  => __( 'Estimated at 20% for planning purposes.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Mortgage Amount', 'estatein' ),
+				'value' => '$1,000,000',
+				'note'  => __( 'Approximate financed amount after down payment.', 'estatein' ),
+			),
+		),
+		'monthly_expenses'    => array(
+			array(
+				'label' => __( 'Property Taxes', 'estatein' ),
+				'value' => '$1,250',
+				'note'  => __( 'Estimated monthly property tax allocation.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Homeowners Association Fee', 'estatein' ),
+				'value' => '$300',
+				'note'  => __( 'Monthly community fee.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Mortgage Payment', 'estatein' ),
+				'value' => '$4,700',
+				'note'  => __( 'Sample estimate based on terms and interest rate.', 'estatein' ),
+			),
+			array(
+				'label' => __( 'Property Insurance', 'estatein' ),
+				'value' => '$100',
+				'note'  => __( 'Approximate monthly share of annual insurance.', 'estatein' ),
+			),
+		),
+	);
+}
+
+/**
+ * Returns a property field default formatted for editor fields.
+ *
+ * @param string $key Property field key.
+ * @return string
+ */
+function estatein_property_editor_default( $key ) {
+	$defaults = estatein_property_defaults();
+
+	if ( ! isset( $defaults[ $key ] ) ) {
+		return '';
+	}
+
+	$value = $defaults[ $key ];
+
+	if ( is_array( $value ) ) {
+		$lines = array();
+
+		foreach ( $value as $item ) {
+			if ( is_array( $item ) ) {
+				$lines[] = implode(
+					' | ',
+					array_filter(
+						array(
+							isset( $item['label'] ) ? $item['label'] : '',
+							isset( $item['value'] ) ? $item['value'] : '',
+							isset( $item['note'] ) ? $item['note'] : '',
+						),
+						'strlen'
+					)
+				);
+			} else {
+				$lines[] = $item;
+			}
+		}
+
+		return implode( "\n", $lines );
+	}
+
+	return (string) $value;
+}
+
+/**
+ * Parses a multi-line property meta value.
+ *
+ * @param int    $post_id Post ID.
+ * @param string $key Meta key without prefix.
+ * @param array  $default Default lines.
+ * @return array
+ */
+function estatein_property_lines_meta( $post_id, $key, $default = array() ) {
+	$raw = trim( estatein_meta( $post_id, $key, '' ) );
+
+	if ( '' === $raw ) {
+		return $default;
+	}
+
+	$lines = preg_split( '/\r\n|\r|\n/', $raw );
+	$lines = array_map( 'trim', $lines );
+	$lines = array_values( array_filter( $lines, 'strlen' ) );
+
+	return $lines ? $lines : $default;
+}
+
+/**
+ * Parses line-based property table rows in the format "Label | Value | Note".
+ *
+ * @param int    $post_id Post ID.
+ * @param string $key Meta key without prefix.
+ * @param array  $default Default rows.
+ * @return array[]
+ */
+function estatein_property_table_meta( $post_id, $key, $default = array() ) {
+	$lines = estatein_property_lines_meta( $post_id, $key, array() );
+
+	if ( empty( $lines ) ) {
+		return $default;
+	}
+
+	$rows = array();
+
+	foreach ( $lines as $line ) {
+		$parts = array_map( 'trim', explode( '|', $line ) );
+		$rows[] = array(
+			'label' => isset( $parts[0] ) ? $parts[0] : '',
+			'value' => isset( $parts[1] ) ? $parts[1] : '',
+			'note'  => isset( $parts[2] ) ? $parts[2] : '',
+		);
+	}
+
+	return $rows ? $rows : $default;
 }
 
 /**
@@ -289,7 +504,7 @@ function estatein_demo_services() {
 		),
 		array(
 			'icon'    => '%',
-			'title'   => __( 'Smart Investments', 'estatein' ),
+			'title'   => __( 'Smart Investments, Informed Decisions', 'estatein' ),
 			'excerpt' => __( 'Use market analysis and ROI planning to make more confident decisions.', 'estatein' ),
 			'url'     => home_url( '/services/#investments' ),
 		),
@@ -302,30 +517,35 @@ function estatein_demo_services() {
  * @return array[]
  */
 function estatein_demo_testimonials() {
+	$theme_images = trailingslashit( get_template_directory_uri() ) . 'assets/images/';
+
 	return array(
 		array(
-			'title'    => __( 'Exceptional Service', 'estatein' ),
-			'quote'    => __( 'Estatein helped us narrow the search quickly and guided us through every step with calm expertise.', 'estatein' ),
-			'name'     => 'Emily Wilson',
+			'title'    => __( 'Exceptional Service!', 'estatein' ),
+			'quote'    => __( 'Our experience with Estatein was outstanding. Their team\'s dedication and professionalism made finding our dream home a breeze. Highly recommended!', 'estatein' ),
+			'name'     => 'Wade Warren',
 			'location' => 'USA, California',
-			'initials' => 'EW',
+			'initials' => 'WW',
 			'rating'   => '5/5',
+			'avatar'   => $theme_images . 'testimonial_1.webp',
 		),
 		array(
 			'title'    => __( 'Efficient and Reliable', 'estatein' ),
-			'quote'    => __( 'The selling plan was clear, the presentation was excellent, and the result exceeded expectations.', 'estatein' ),
-			'name'     => 'Michael Wilson',
+			'quote'    => __( 'Estatein provided us with top-notch service. They helped us sell our property quickly and at a great price. We couldn\'t be happier with the results.', 'estatein' ),
+			'name'     => 'Emelie Thomson',
 			'location' => 'USA, Florida',
-			'initials' => 'MW',
+			'initials' => 'ET',
 			'rating'   => '5/5',
+			'avatar'   => $theme_images . 'testimonial_2.webp',
 		),
 		array(
 			'title'    => __( 'Trusted Advisors', 'estatein' ),
-			'quote'    => __( 'Their market insight helped us choose the right investment without feeling rushed.', 'estatein' ),
-			'name'     => 'Sarah Lee',
+			'quote'    => __( 'The Estatein team guided us through the entire buying process. Their knowledge and commitment to our needs were impressive. Thank you for your support!', 'estatein' ),
+			'name'     => 'John Mans',
 			'location' => 'USA, Nevada',
-			'initials' => 'SL',
+			'initials' => 'JM',
 			'rating'   => '5/5',
+			'avatar'   => $theme_images . 'testimonial_3.webp',
 		),
 	);
 }
@@ -381,6 +601,56 @@ function estatein_demo_team_members() {
 }
 
 /**
+ * Demo client stories used on the About page before content is managed.
+ *
+ * @return array[]
+ */
+function estatein_demo_clients() {
+	return array(
+		array(
+			'since'      => 'Since 2019',
+			'name'       => 'ABC Corporation',
+			'category'   => __( 'Commercial Real Estate', 'estatein' ),
+			'domain'     => __( 'Luxury Home Development', 'estatein' ),
+			'quote'      => __( 'Estatein helped us identify a new segment for expansion and present investment opportunities with more clarity. Their process was sharp, responsive, and grounded in market reality.', 'estatein' ),
+			'advisor'    => 'John M.',
+			'cta_label'  => __( 'Visit Website', 'estatein' ),
+			'cta_url'    => home_url( '/contact/' ),
+		),
+		array(
+			'since'      => 'Since 2018',
+			'name'       => 'GreenTech Enterprises',
+			'category'   => __( 'Commercial Real Estate', 'estatein' ),
+			'domain'     => __( 'Retail Spaces', 'estatein' ),
+			'quote'      => __( 'The Estatein team balanced speed with careful guidance. We secured a better location than expected and felt supported from shortlist through signing.', 'estatein' ),
+			'advisor'    => 'Sarah J.',
+			'cta_label'  => __( 'Visit Website', 'estatein' ),
+			'cta_url'    => home_url( '/contact/' ),
+		),
+		array(
+			'since'      => 'Since 2020',
+			'name'       => 'UrbanNest Group',
+			'category'   => __( 'Residential Real Estate', 'estatein' ),
+			'domain'     => __( 'Mixed-Use Communities', 'estatein' ),
+			'quote'      => __( 'Estatein gave our expansion team a much clearer view of market opportunities. Their guidance helped us shortlist better properties and move faster with confidence.', 'estatein' ),
+			'advisor'    => 'David R.',
+			'cta_label'  => __( 'Visit Website', 'estatein' ),
+			'cta_url'    => home_url( '/contact/' ),
+		),
+		array(
+			'since'      => 'Since 2021',
+			'name'       => 'BluePeak Holdings',
+			'category'   => __( 'Investment Real Estate', 'estatein' ),
+			'domain'     => __( 'Office and Commercial Assets', 'estatein' ),
+			'quote'      => __( 'We appreciated how practical the Estatein team was throughout the process. Their market summaries, negotiation support, and responsiveness made a real difference.', 'estatein' ),
+			'advisor'    => 'Michael T.',
+			'cta_label'  => __( 'Visit Website', 'estatein' ),
+			'cta_url'    => home_url( '/contact/' ),
+		),
+	);
+}
+
+/**
  * Sends lightweight lead form emails.
  */
 function estatein_handle_lead_form() {
@@ -388,11 +658,16 @@ function estatein_handle_lead_form() {
 		wp_die( esc_html__( 'Security check failed.', 'estatein' ) );
 	}
 
-	$name     = isset( $_POST['lead_name'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_name'] ) ) : '';
-	$email    = isset( $_POST['lead_email'] ) ? sanitize_email( wp_unslash( $_POST['lead_email'] ) ) : '';
-	$phone    = isset( $_POST['lead_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_phone'] ) ) : '';
-	$message  = isset( $_POST['lead_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['lead_message'] ) ) : '';
-	$interest = isset( $_POST['lead_interest'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_interest'] ) ) : __( 'General inquiry', 'estatein' );
+	$name      = isset( $_POST['lead_name'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_name'] ) ) : '';
+	$last_name = isset( $_POST['lead_last_name'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_last_name'] ) ) : '';
+	$email     = isset( $_POST['lead_email'] ) ? sanitize_email( wp_unslash( $_POST['lead_email'] ) ) : '';
+	$phone     = isset( $_POST['lead_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_phone'] ) ) : '';
+	$message   = isset( $_POST['lead_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['lead_message'] ) ) : '';
+	$interest  = isset( $_POST['lead_interest'] ) ? sanitize_text_field( wp_unslash( $_POST['lead_interest'] ) ) : __( 'General inquiry', 'estatein' );
+
+	if ( '' !== $last_name ) {
+		$name = trim( $name . ' ' . $last_name );
+	}
 
 	if ( ! is_email( $email ) ) {
 		wp_safe_redirect( add_query_arg( 'estatein_status', 'invalid', wp_get_referer() ? wp_get_referer() : home_url( '/' ) ) );

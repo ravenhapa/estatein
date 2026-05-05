@@ -17,10 +17,11 @@
 <div class="site-shell">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'estatein' ); ?></a>
 	<div class="top-strip" data-announcement>
-		<div class="container top-strip__inner">`
+		<div class="container top-strip__inner">
 			<div class="top-strip__message">
-				<span><?php esc_html_e( '✨Discover Your Dream Property with Estatein.', 'estatein' ); ?></span>
-				<a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Learn more', 'estatein' ); ?></a>
+				<span aria-hidden="true" class="top-strip__sparkle">&#10024;</span>
+				<span><?php esc_html_e( 'Discover Your Dream Property with Estatein.', 'estatein' ); ?></span>
+				<a href="<?php echo esc_url( home_url( '/properties/' ) ); ?>"><?php esc_html_e( 'Learn More', 'estatein' ); ?></a>
 			</div>
 			<button class="top-strip__close" type="button" data-announcement-close aria-label="<?php esc_attr_e( 'Close announcement', 'estatein' ); ?>">
 				<span aria-hidden="true">&times;</span>
